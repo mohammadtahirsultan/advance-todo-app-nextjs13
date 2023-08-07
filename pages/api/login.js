@@ -36,10 +36,6 @@ export default async (req, res) => {
             })
         );
 
-        console.log("cookie set ho gai ");
-
-
-        console.log("logged in ");
 
         return res.status(200).json({
             success: true,

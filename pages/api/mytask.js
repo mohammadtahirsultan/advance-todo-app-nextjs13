@@ -24,7 +24,7 @@ export default async (req, res) => {
             tasks,
         });
     } catch (error) {
-        return errorMiddleWare(res, error)
+        return errorMiddleWare(res, error.message)
     }
 };
 

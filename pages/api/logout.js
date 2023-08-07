@@ -5,8 +5,6 @@ import { serialize } from 'cookie';
 export default async (req, res) => {
     try {
 
-        console.log("cookie deleted karne aya ");
-
         res.setHeader(
             "Set-Cookie",
             serialize("token", "", {
@@ -16,7 +14,6 @@ export default async (req, res) => {
             })
         );
 
-        console.log("cookie deleted");
         return res.json({
             success: true,
             message: "Logged Out!",

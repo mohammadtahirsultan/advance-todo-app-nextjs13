@@ -24,7 +24,7 @@ export default async (req, res) => {
             user
         });
     } catch (error) {
-        return errorMiddleWare(res, "Login First!")
+        return errorMiddleWare(res, error.message)
     }
 };
 
