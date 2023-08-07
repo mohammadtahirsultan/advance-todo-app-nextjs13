@@ -1,4 +1,4 @@
-import { connectDB, cookieSetter, generateToken } from '../../utils/database'
+import { connectDB, generateToken } from '../../utils/database'
 import { User } from '../../models/user'
 import { errorMiddleWare } from '../../app/middleware/errorMiddleware';
 import bcrypt from 'bcrypt'
@@ -25,9 +25,16 @@ export default async (req, res) => {
 
         const token = generateToken(user._id)
 
-        cookieSetter(token, true)
+        res.setHeader(
+            "Set-Cookie",
+            serialize("token", token, {
+                path: "/",
+                httpOnly: true,
+                maxAge: 15 * 24 * 60 * 60, // 15 days in seconds
+            })
+        );
 
-        return res.json({
+        return res.status(200).json({
             success: true,
             message: `Welcome Back ${user.name} !`,
             user,
@@ -37,7 +44,7 @@ export default async (req, res) => {
             });
 
     } catch (error) {
-        return errorMiddleWare(res)
+        return errorMiddleWare(res,error)
     }
 };
 
