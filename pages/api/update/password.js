@@ -14,8 +14,6 @@ export default async (req, res) => {
 
         const { oldPassword, newPassword, confirmPassword } = req.body;
 
-        console.log(req.body);
-
         let user = await checkAuth(req)
 
         user = await User.findById(user._id).select("+password")

@@ -13,7 +13,6 @@ const fetchTodos = async (token) => {
       },
     })
 
-    console.log("here is data line:16 todos.js", data);
     if (!data.success) return [];
 
     return data.tasks;
@@ -32,7 +31,6 @@ const Todos = async () => {
 
   const tasks = await fetchTodos(token);
 
-  console.log("here are the fetched tasks to render in Todos Componet",tasks);
 
   return (
     <div className='todosContainer'>

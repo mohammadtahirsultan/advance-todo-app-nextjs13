@@ -12,7 +12,6 @@ export default async (req, res) => {
             .update(req.query.token)
             .digest(`hex`);
 
-        console.log("reset Password Token is " + resetPasswordToken);
         let user = await User.findOne({
             resetPasswordToken,
             resetPasswordExpire: { $gt: Date.now() },
