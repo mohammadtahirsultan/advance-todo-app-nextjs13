@@ -83,6 +83,7 @@ export const Button = () => {
             withCredentials: true
         })
 
+        if (!data.success) return toast.error(data.message)
         if (data.success) {
             localStorage.removeItem('isLoggedIn');
             setUser(null);

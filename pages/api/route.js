@@ -1,10 +1,11 @@
-import { connectDB, cookieSetter, generateToken } from '../../../utils/database'
-import { User } from '../../../models/user'
-import { NextResponse } from 'next/server';
-import { errorMiddleWare } from '../../middleware/errorMiddleware';
+import { connectDB, cookieSetter, generateToken } from '../../utils/database'
+import { User } from '../../models/user'
+import { errorMiddleWare } from '../../app/middleware/errorMiddleware';
 import bcrypt from 'bcrypt'
 
-export const POST = async (req, res) => {
+export default async (req, res) => {
+
+    if(req.method!=="POST") return errorMiddleWare(res,"This Method is not Allowed!")
     try {
 
         await connectDB()
@@ -13,20 +14,20 @@ export const POST = async (req, res) => {
         let user = await User.findOne({ email }).select("+password")
 
         if (!user) {
-            return errorMiddleWare(NextResponse, "User Does Not Exist!")
+            return errorMiddleWare(res, "User Does Not Exist!")
         }
 
         const matchedPassword = await bcrypt.compare(password, user.password)
 
         if (!matchedPassword) {
-            return errorMiddleWare(NextResponse, "Invalid Credentials!")
+            return errorMiddleWare(res, "Invalid Credentials!")
         }
 
         const token = generateToken(user._id)
 
         cookieSetter(token, true)
 
-        return NextResponse.json({
+        return res.json({
             success: true,
             message: `Welcome Back ${user.name} !`,
             user,
@@ -36,7 +37,7 @@ export const POST = async (req, res) => {
             });
 
     } catch (error) {
-        return errorMiddleWare(NextResponse)
+        return errorMiddleWare(res)
     }
 };
 
