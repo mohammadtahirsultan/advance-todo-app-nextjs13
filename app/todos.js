@@ -6,7 +6,7 @@ import { redirect } from 'next/navigation';
 
 const fetchTodos = async (token) => {
   try {
-    const { data } = await axios.get(`${process.env.FRONT_END_URL}/api/mytask`, {
+    const { data } = await axios.get(`/api/mytask`, {
       cache: "no-cache",
       headers: {
         cookie: `token=${token}`,
