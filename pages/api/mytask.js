@@ -1,6 +1,5 @@
 import { checkAuth, connectDB, getAuth } from '../../utils/database'
 import Task from '../../models/task'
-import { res } from 'next/server';
 import { errorMiddleWare } from '../../app/middleware/errorMiddleware';
 
 
