@@ -2,6 +2,7 @@ import { connectDB, generateToken } from '../../utils/database'
 import { User } from '../../models/user'
 import { errorMiddleWare } from '../../app/middleware/errorMiddleware';
 import bcrypt from 'bcrypt'
+import { serialize } from 'cookie';
 
 export default async (req, res) => {
 
@@ -17,21 +18,14 @@ export default async (req, res) => {
             return errorMiddleWare(res, "User Does Not Exist!")
         }
 
-        console.log("user mil gaya");
-
         const matchedPassword = await bcrypt.compare(password, user.password)
 
         if (!matchedPassword) {
             return errorMiddleWare(res, "Invalid Credentials!")
         }
 
-        console.log("password match hogia");
-
-
         const token = generateToken(user._id)
 
-
-        console.log("token ho gia ok,");
 
         res.setHeader(
             "Set-Cookie",
@@ -47,9 +41,9 @@ export default async (req, res) => {
 
         console.log("logged in ");
 
-        return res.status(201).json({
+        return res.status(200).json({
             success: true,
-            message: "Registered Successfully!",
+            message: "Login Successfully!",
             user,
         });
 
