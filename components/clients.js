@@ -87,7 +87,9 @@ export const Button = () => {
             localStorage.removeItem('isLoggedIn');
             setUser(null);
             toast.success(data.message)
-            push("/login");
+            return push("/login");
+        } else {
+            return toast.error(data.message)
         }
 
     }
