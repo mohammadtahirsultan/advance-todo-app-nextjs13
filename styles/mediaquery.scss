@@ -1,0 +1,26 @@
+@media (max-width: 900px) {
+  .login {
+    padding: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .login > section > form button {
+    width: 15.75rem;
+    padding: 0.91rem 2rem;
+    border-radius: 10px;
+  }
+}
+
+@media (max-width: 768px) {
+  .btn {
+    width: 7rem!important;
+    padding: 0.3rem 0.5rem!important;
+    letter-spacing: 0px!important;
+    font-size: 1.2rem!important;
+    border-radius: 10px!important;
+  }
+}
+p{
+  margin-top: 1rem;
+}

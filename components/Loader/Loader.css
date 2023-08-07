@@ -1,0 +1,31 @@
+
+.loading{
+  display: flex;
+  height: 7vh;
+  width: 5vw;
+  align-items: center;
+  justify-content: center;
+
+}
+.loading >  .loader {
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid black;
+  border-right: 16px solid rgb(243, 8, 8);
+  border-bottom: 16px solid black;
+  border-left: 16px solid rgb(241, 17, 17);
+  width: 10%;
+  height: 50%;
+  -webkit-animation: spin .2s linear infinite;
+  animation: spin .52s linear infinite;
+  transform: rotate(90deg);
+}
+
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
