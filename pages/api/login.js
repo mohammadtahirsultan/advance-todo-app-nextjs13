@@ -17,13 +17,21 @@ export default async (req, res) => {
             return errorMiddleWare(res, "User Does Not Exist!")
         }
 
+        console.log("user mil gaya");
+
         const matchedPassword = await bcrypt.compare(password, user.password)
 
         if (!matchedPassword) {
             return errorMiddleWare(res, "Invalid Credentials!")
         }
 
+        console.log("password match hogia");
+
+
         const token = generateToken(user._id)
+
+
+        console.log("token ho gia ok,");
 
         res.setHeader(
             "Set-Cookie",
@@ -34,17 +42,19 @@ export default async (req, res) => {
             })
         );
 
-        return res.status(200).json({
+        console.log("cookie set ho gai ");
+
+
+        console.log("logged in ");
+
+        return res.status(201).json({
             success: true,
-            message: `Welcome Back ${user.name} !`,
+            message: "Registered Successfully!",
             user,
-        },
-            {
-                headers: { 'Set-Cookie': `token=${token}` }
-            });
+        });
 
     } catch (error) {
-        return errorMiddleWare(res,error)
+        return errorMiddleWare(res,error.message)
     }
 };
 

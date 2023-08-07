@@ -58,14 +58,12 @@ export default async (req, res) => {
             })
         );
 
-        console.log("hello3");
 
         return res.status(201).json({
             success: true,
             message: "Registered Successfully!",
             user,
         });
-
 
 
     } catch (error) {
