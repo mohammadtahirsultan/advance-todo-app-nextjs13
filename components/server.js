@@ -3,6 +3,7 @@ import { TodosButton } from './clients'
 import { cookies } from 'next/headers'
 
 export const TodoItem = ({ title, description, id, isCompleted }) => {
+    console.log("here is the Todo Item Component", title, description, id, isCompleted);
     return (
         <div className='todo'>
             <div>
