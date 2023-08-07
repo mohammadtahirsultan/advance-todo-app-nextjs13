@@ -9,7 +9,7 @@ export default async (req, res) => {
     try {
 
         await connectDB()
-        const { email, password } = await req.json();
+        const { email, password } = req.body;
 
         let user = await User.findOne({ email }).select("+password")
 
