@@ -1,4 +1,4 @@
-import { checkAuth, connectDB, getAuth } from '../../utils/database'
+import { checkAuth, connectDB } from '../../utils/database'
 import Task from '../../models/task'
 import { errorMiddleWare } from '../../app/middleware/errorMiddleware';
 
